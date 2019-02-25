@@ -20,6 +20,16 @@ export class AppComponent {
       url: '/list',
       icon: 'list'
     }
+    // {
+    //   title: 'Login',
+    //   url: '/login',
+    //   icon: 'log-in'
+    // },
+    // {
+    //   title: 'Sign Up',
+    //   url: '/signup',
+    //   icon: 'person'
+    // }
   ];
 
   constructor(
