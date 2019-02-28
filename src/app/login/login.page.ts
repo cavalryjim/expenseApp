@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,16 +8,40 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  account = { email: '', password: '' };
 
   constructor( private userService: UserService,
+               private toastCtrl: ToastController,
                public navCtrl: NavController ) { }
 
   ngOnInit() {
   }
 
   doLogin() {
-    this.userService.signedIn = true;
-    this.navCtrl.navigateRoot('/list');
+    if ((this.account.email != '') && (this.account.password != '')) {
+      this.userService.signin(this.account.email, this.account.password)
+        .then(data => {
+          console.log(data);
+          this.presentToast("Success.");
+          this.navCtrl.navigateRoot('/list');
+        })
+        .catch(error => {
+          console.log(error);
+          this.presentToast(error.message);
+        });
+    } else {
+      this.presentToast("Email & password are required.");
+      return false;
+    }
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
   }
 
   gotoSignup() {

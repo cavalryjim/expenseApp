@@ -9,30 +9,21 @@ import { ExpenseService } from '../services/expense.service';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  // items = <any>[];
   items = this.expenseService.expenses;
 
   constructor( private userService: UserService,
+               // private storage: Storage,
                private expenseService: ExpenseService,
                private navCtrl: NavController ) {
   }
 
-  ngAfterViewInit() {
-    if (!this.userService.signedIn) {
-      console.log('not signed in');
-      this.showLogin();
-    }
-  }
 
   ngOnInit() {
 
   }
 
-  showLogin() {
-    this.navCtrl.navigateRoot('/login');
-  }
-
   onSelect(expense) {
+    // this.navCtrl.navigateForward('/expense-detail');
     this.navCtrl.navigateForward(['/expense-detail', { expense: expense }]);
   }
 
