@@ -13,10 +13,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items" (click)="onSelect(item)">
+  <ion-card *ngFor="let item of expenseService.expenses" (click)="onSelect(item)">
+    <ion-card-header>
       <ion-icon name="cash" slot="start"></ion-icon>
-      {{item.description}}
-    </ion-item>
-  </ion-list>
+      ${{ item.cost }} - {{ item.user }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ item.description }}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

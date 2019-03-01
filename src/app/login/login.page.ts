@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
       this.userService.signin(this.account.email, this.account.password)
         .then(data => {
           console.log(data);
-          this.presentToast("Success.");
+          this.presentToast("Successfully logged in.");
           this.navCtrl.navigateRoot('/list');
         })
         .catch(error => {

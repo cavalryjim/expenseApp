@@ -9,22 +9,21 @@ import { ExpenseService } from '../services/expense.service';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  items = this.expenseService.expenses;
+  // items = this.expenseService.expenses;
 
   constructor( private userService: UserService,
-               // private storage: Storage,
                private expenseService: ExpenseService,
                private navCtrl: NavController ) {
   }
 
-
   ngOnInit() {
-
   }
 
   onSelect(expense) {
     // this.navCtrl.navigateForward('/expense-detail');
-    this.navCtrl.navigateForward(['/expense-detail', { expense: expense }]);
+    console.log(expense);
+    this.expenseService.selectedExpense = expense;
+    this.navCtrl.navigateForward('/expense-detail');
   }
 
   newExpense() {

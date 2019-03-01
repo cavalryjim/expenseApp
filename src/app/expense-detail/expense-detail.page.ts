@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ExpenseService } from '../services/expense.service';
 
 @Component({
   selector: 'app-expense-detail',
@@ -7,11 +8,12 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./expense-detail.page.scss'],
 })
 export class ExpenseDetailPage implements OnInit {
-  // expense = this.navParams.get('expense');
-  constructor(  ) { }
+  expense = this.expenseService.selectedExpense;
+
+  constructor( private expenseService: ExpenseService ) { }
 
   ngOnInit() {
-    // console.log(this.navParams.get('expense');)
+    console.log(this.expense);
   }
 
 }

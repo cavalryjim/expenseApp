@@ -6,5 +6,9 @@
 </ion-header>
 
 <ion-content padding>
+  <h4>{{ expense.type }}: {{ expense.user }}</h4>
+  <div>${{ expense.cost }}</div>
+  <div>{{ expense.description }}</div>
 
+  <!-- <div>{{ JSON.stringify(expense) }}</div> -->
 </ion-content>
